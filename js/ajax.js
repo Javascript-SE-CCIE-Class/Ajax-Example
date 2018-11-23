@@ -1,11 +1,9 @@
+let http = new XMLHttpRequest();
+let users = [];
 function saveForm(event) {
     event.preventDefault();
-
-
     let form = document.getElementById('my_fom');
     let formData = new FormData(form);
-
-    let http = new XMLHttpRequest();
     http.open('POST', '/save.php', true);
 
     http.onreadystatechange = function () {
@@ -31,5 +29,37 @@ function saveForm(event) {
         }
     }
     http.send(formData);
+}
+function fetch() {
+    http.open('GET', '/fetch.php', true);
+    http.onreadystatechange = function(){
+        if (this.readyState === 4 && this.status === 200){
+            users = http.responseText;
+            displayData(users);
+            // console.log(users);
+        }
+    }
+    http.send();
+}
+fetch();
 
+function displayData(users) {
+    let table = document.getElementById('userTable');
+    let table_data = document.getElementById('table_data');
+
+    if(users.length > 0){
+        table.style.display = 'block';
+    }else{
+        table.style.display = 'none';
+    }
+    users.forEach(function (user) {
+        table_data += `
+        <tr>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.password}</td>
+        </tr>
+        `
+    })
 }

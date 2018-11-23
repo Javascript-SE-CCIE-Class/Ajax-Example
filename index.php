@@ -42,6 +42,24 @@
         </div>
     </div>
 
+    <div class="card">
+        <div class="car-body">
+            <table class="table" id="userTable" style="display: none">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                </tr>
+                </thead>
+                <tbody id="table_data">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 <script src="js/ajax.js"></script>
